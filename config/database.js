@@ -1,5 +1,7 @@
-const { Sequelize } = require('sequelize'); 
+const { Sequelize } = require('sequelize');
+
 const { database, dbUsername, dbKey } = process.env;
+
 const sequelize = new Sequelize(database, dbUsername, dbKey, {
     dialect: 'mysql',
     define: {
@@ -8,7 +10,7 @@ const sequelize = new Sequelize(database, dbUsername, dbKey, {
     }
 })
 
-sequelize.authenticate().then(() => console.log('Success! MySQL Connected...')).catch(() => console.log('Error'));
+sequelize.authenticate().then(() => console.log('Success! MySQL Connected...')).catch(err => console.log('Error connecting to the database' + err));
 module.exports = sequelize;
 
 // dialectOptions: {
